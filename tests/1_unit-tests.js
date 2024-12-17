@@ -5,7 +5,7 @@ const Translator = require('../components/translator.js');
 const translator = new Translator();
 
 suite('Unit Tests', () => {
-	suite('Translate to  British English', () => {
+	suite('Translate to British English', () => {
 		test(`Translate "Mangoes are my favorite fruit." to British English`, () => {
 			const result = translator.translate(
 				'Mangoes are my favorite fruit.',
@@ -70,21 +70,140 @@ suite('Unit Tests', () => {
             assert.equal(result.translation.includes('Mr'), true);
         });
 
-        test(`Translate "We had a party at my friend's condo." to British English`, () => {
+        test(`Translate "Dr. Grosh will see you now." to British English`, () => {
             const result = translator.translate(
-                `We had a party at my friend's condo.`,
+                `Dr. Grosh will see you now.`,
                 `american-to-british`
             );
-            assert.equal(result.translation.includes('flat'), true);
+            assert.equal(result.translation.includes('Dr'), true);
         });
 
-        test(`Translate "We had a party at my friend's condo." to British English`, () => {
+        test(`Translate "Lunch is at 12:15 today." to British English`, () => {
             const result = translator.translate(
-                `We had a party at my friend's condo.`,
+                `Lunch is at 12:15 today.`,
                 `american-to-british`
             );
-            assert.equal(result.translation.includes('flat'), true);
+            assert.equal(result.translation.includes('12.15'), true);
         });
 	});
+
+    suite('Translate to American English', () => {
+        test(`Translate "We watched the footie match for a while." to American English`, () => {
+            const result = translator.translate(
+                `We watched the footie match for a while.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('soccer'), true);
+        });
+
+        test(`Translate "Paracetamol takes up to an hour to work." to American English`, () => {
+            const result = translator.translate(
+                `Paracetamol takes up to an hour to work.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('Tylenol'), true);
+        });
+
+        test(`Translate "First, caramelise the onions." to American English`, () => {
+            const result = translator.translate(
+                `First, caramelise the onions.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('caramelize'), true);
+        });
+
+        test(`Translate "I spent the bank holiday at the funfair." to American English`, () => {
+            const result = translator.translate(
+                `I spent the bank holiday at the funfair.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('public holiday'), true);
+            assert.equal(result.translation.includes('carnival'), true);
+        });
+
+        test(`Translate "I had a bicky then went to the chippy." to American English`, () => {
+            const result = translator.translate(
+                `I had a bicky then went to the chippy.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('cookie'), true);
+            assert.equal(result.translation.includes('fish-and-chip shop'), true);
+        });
+
+        test(`Translate "I've just got bits and bobs in my bum bag." to American English`, () => {
+            const result = translator.translate(
+                `I've just got bits and bobs in my bum bag.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('odds and ends'), true);
+            assert.equal(result.translation.includes('fanny pack'), true);
+        });
+
+        test(`Translate "The car boot sale at Boxted Airfield was called off." to American English`, () => {
+            const result = translator.translate(
+                `The car boot sale at Boxted Airfield was called off.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('swap meet'), true);
+        });
+
+        test(`Translate "Have you met Mrs Kalyani?" to American English`, () => {
+            const result = translator.translate(
+                `Have you met Mrs Kalyani?`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('Mrs.'), true);
+        });
+
+        test(`Translate "Prof Joyner of King's College, London." to American English`, () => {
+            const result = translator.translate(
+                `Prof Joyner of King's College, London.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('Prof.'), true);
+        });
+
+        test(`Translate "Tea time is usually around 4 or 4.30." to American English`, () => {
+            const result = translator.translate(
+                `Tea time is usually around 4 or 4.30.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('4:30'), true);
+        });
+    })
+
+    suite('Highlight translations', () => {
+        test(`Highlight translations in "Mangoes are my favorite fruit."`, () => {
+			const result = translator.translate(
+				'Mangoes are my favorite fruit.',
+				'american-to-british'
+			);
+			assert.equal(result.translation.includes('class="highlight"'), true);
+		});
+
+		test(`Highlight translations in "I ate yogurt for breakfast."`, () => {
+			const result = translator.translate(
+				'I ate yogurt for breakfast.',
+				'american-to-british'
+			);
+			assert.equal(result.translation.includes('class="highlight"'), true);
+		});
+
+        test(`Highlight translations in "We watched the footie match for a while."`, () => {
+            const result = translator.translate(
+                `We watched the footie match for a while.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('class="highlight"'), true);
+        });
+
+        test(`Highlight translations in "Paracetamol takes up to an hour to work."`, () => {
+            const result = translator.translate(
+                `Paracetamol takes up to an hour to work.`,
+                `british-to-american`
+            );
+            assert.equal(result.translation.includes('class="highlight"'), true);
+        });
+    })
 });
 
